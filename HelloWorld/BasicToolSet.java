@@ -7,27 +7,6 @@ import java.util.Arrays;
 public class BasicToolSet
 {
 
-    public static void FileAcess(String [] args)
-    {
-        try
-        {
-            String a = new String(args[0]);
-            System.out.println(a);
-
-            File inputFile = new File(a);
-            Scanner myReader = new Scanner(inputFile);
-            while (myReader.hasNextLine())
-            {
-                System.out.println(myReader.nextLine());
-            }
-        }
-        catch (FileNotFoundException e)
-        {
-            System.out.println("An file open error occurred.");
-            e.printStackTrace();
-        }
-    }
-
     public static Integer [] FileAcessReadToArray(String [] args)
     {
         ArrayList<Integer> lines = new ArrayList<Integer>();
@@ -40,7 +19,7 @@ public class BasicToolSet
             {
                 lines.add(Integer.parseInt(myReader.nextLine().trim()));
             }
-            return lines.toArray(new Integer[lines.size()]);
+
         }
         catch (FileNotFoundException e)
         {
@@ -49,16 +28,25 @@ public class BasicToolSet
         }
         return  lines.toArray(new Integer[lines.size()]);
     }
-    public static void main(String[] args)
+
+
+    public static Integer [] StdInToArray()
     {
-        if (args.length < 1)
+        ArrayList<Integer> lines = new ArrayList<Integer>();
+        Scanner myReader = new Scanner(new java.io.BufferedInputStream(System.in));
+            
+        while (myReader.hasNextLine())
         {
-            System.out.println("Error:input required.");
-            return;
+            lines.add(Integer.parseInt(myReader.nextLine().trim()));
         }
 
-        //FileAcess(args);
+        return  lines.toArray(new Integer[lines.size()]);
+    }
+    
+    public static void main(String[] args)
+    {
         Integer [] IntList = FileAcessReadToArray(args);
+        //Integer [] IntList = StdInToArray();
         Arrays.sort(IntList);
         for (int x : IntList)
         {

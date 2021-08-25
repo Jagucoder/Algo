@@ -19,7 +19,6 @@ public class BinarySearch
             {
                 lines.add(Integer.parseInt(myReader.nextLine().trim()));
             }
-            return lines.toArray(new Integer[lines.size()]);
         }
         catch (FileNotFoundException e)
         {
@@ -46,9 +45,22 @@ public class BinarySearch
         return -1;
     }
 
+    public static Integer [] StdInToArray()
+    {
+        ArrayList<Integer> lines = new ArrayList<Integer>();
+        Scanner myReader = new Scanner(new java.io.BufferedInputStream(System.in));
+            
+        while (myReader.hasNextLine())
+        {
+            lines.add(Integer.parseInt(myReader.nextLine().trim()));
+        }
+
+        return  lines.toArray(new Integer[lines.size()]);
+    }
+    
     public static void main(String[] args)
     {
-        if (args.length < 2)
+        if (args.length < 1)
         {
             System.out.println("Error:"+2  +"input required.");
             return;
@@ -56,14 +68,20 @@ public class BinarySearch
 
         //FileAcess(args);
         Integer [] IntList = FileAcessReadToArray(args);
+        Integer [] StdList = StdInToArray();
         Arrays.sort(IntList);
 
-        int ranknum = rank(Integer.parseInt(args[1]), IntList);
-        if (ranknum != -1)
+        
+        for(int x : StdList)
         {
-            System.out.println("number=" + IntList[ranknum]);
-            System.out.println(ranknum);
-        };
+            int ranknum = rank(x, IntList);
+            if (ranknum != -1)
+            {
+                System.out.println(x);
+                //System.out.println(ranknum);
+            };
+        }
+
 
     }
 }

@@ -1,3 +1,5 @@
+package BasicToolSet;
+
 import java.io.File;
 import java.io.FileNotFoundException;  // Import this class to handle errors
 import java.util.Scanner; // Import the Scanner class to read text files
@@ -45,8 +47,8 @@ public class BasicToolSet
     
     public static void main(String[] args)
     {
-        Integer [] IntList = FileAcessReadToArray(args);
-        //Integer [] IntList = StdInToArray();
+        //Integer [] IntList = FileAcessReadToArray(args);
+        Integer [] IntList = StdInToArray();
         Arrays.sort(IntList);
         for (int x : IntList)
         {

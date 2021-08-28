@@ -1,32 +1,15 @@
+package binSearch;
+
 import java.io.File;
 import java.io.FileNotFoundException;  // Import this class to handle errors
 import java.util.Scanner; // Import the Scanner class to read text files
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import mytool.MyTool;
+
 public class BinarySearch
 {
-
-    public static Integer [] FileAcessReadToArray(String [] args)
-    {
-        ArrayList<Integer> lines = new ArrayList<Integer>();
-        try
-        {
-            File inputFile = new File(args[0]);
-            Scanner myReader = new Scanner(inputFile);
-               
-            while (myReader.hasNextLine())
-            {
-                lines.add(Integer.parseInt(myReader.nextLine().trim()));
-            }
-        }
-        catch (FileNotFoundException e)
-        {
-            System.out.println("An file open error occurred.");
-            e.printStackTrace();
-        }
-        return  lines.toArray(new Integer[lines.size()]);
-    }
 
     public static int rank(int key, Integer [] list)
     {
@@ -67,7 +50,7 @@ public class BinarySearch
         }
 
         //FileAcess(args);
-        Integer [] IntList = FileAcessReadToArray(args);
+        Integer [] IntList = MyTool.FileAccessReadToArray(args);
         Integer [] StdList = StdInToArray();
         Arrays.sort(IntList);
 

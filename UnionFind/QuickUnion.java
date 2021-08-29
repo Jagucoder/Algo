@@ -2,11 +2,12 @@ package UnionFind;
 
 import mytool.Stdin;
 
-public class UnionFind
+public class QuickUnion
 {
     private int[] id;
     private int count;
-    public UnionFind(int n)
+
+    public QuickUnion(int n)
     {
         count = n;
         id = new int[n];
@@ -22,23 +23,18 @@ public class UnionFind
 
     public int find(int p)
     {
-        return id[p];
+        while (p != id[p]) p = id[p];
+        return p;
     }
 
     public void union(int p, int q)
     {
-        int pId = find(p);
-        int qId = find(q);
+        int pRoot = find(p);
+        int qRoot = find(q);
 
-        if (pId == qId) return;
+        if (pRoot == qRoot) return;
 
-        for (int i = 0; i < id.length; i++)
-        {
-            if (id[i] == pId)
-            {
-                id[i] = qId;
-            }
-        }
+        id[pRoot] = qRoot;
 
         count--;
 
@@ -46,13 +42,14 @@ public class UnionFind
 
     public boolean connected(int p, int q)
     {
-        return id[p] == id[q];
+        //return id[p] == id[q];
+        return find(p) == find(q);
     }
     public static void main(String[] args)
     {
         int n = Stdin.readInt();
-        UnionFind uf = new UnionFind(n);
-        while(!Stdin.isEmpty())
+        QuickUnion uf = new QuickUnion(n);
+        while (!Stdin.isEmpty())
         {
             int p = Stdin.readInt();
             int q = Stdin.readInt();

@@ -51,7 +51,7 @@ public class QuickFind
     public static void main(String[] args)
     {
         int n = Stdin.readInt();
-        UnionFind uf = new UnionFind(n);
+        QuickFind uf = new QuickFind(n);
         while(!Stdin.isEmpty())
         {
             int p = Stdin.readInt();

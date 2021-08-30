@@ -36,6 +36,8 @@ public class BinarySearch
             lines.add(Integer.parseInt(myReader.nextLine().trim()));
         }
 
+        myReader.close();
+
         return  lines.toArray(new Integer[lines.size()]);
     }
     
